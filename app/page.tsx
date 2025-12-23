@@ -5,6 +5,31 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { GA_EVENT } from "@/lib/ga";
 import { motion } from "framer-motion";
 
+// ⭐ STEP 1 — CONSTANTS
+const planLabels: any = {
+  free: "Free",
+  pro: "Pro",
+  pro_plus: "Pro+",
+  elite: "Elite",
+  not_decided: "Not Decided Yet",
+};
+
+const planColors: any = {
+  free: "text-gray-300",
+  pro: "text-blue-400",
+  pro_plus: "text-orange-400",
+  elite: "text-yellow-400",
+  not_decided: "text-green-400",
+};
+
+const motivationMessages: any = {
+  free: "Great start! Discipline begins with your first step.",
+  pro: "Athlete mode activated. Stay consistent.",
+  pro_plus: "Dominator mindset. You’re built different.",
+  elite: "Elite circle. Only discipline survives here.",
+  not_decided: "No pressure. Just don’t stop. We’ll help you choose.",
+};
+
 // ✅ INTERNAL REVEAL COMPONENT
 const Reveal = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -122,11 +147,22 @@ export default function HomeClient() {
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
+  
+  // ⭐ STEP 2 — NEW STATES FOR USER & SUCCESS
+  const [savedUser, setSavedUser] = useState<any>(null);
+  const [successData, setSuccessData] = useState<any>(null);
 
   const showToast = (msg: string) => {
     setToast(msg);
     setTimeout(() => setToast(null), 3500);
   };
+
+  // ⭐ STEP 3 — LOAD USER FROM LOCAL STORAGE
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const data = localStorage.getItem("fyt_registration");
+    if (data) setSavedUser(JSON.parse(data));
+  }, []);
 
   return (
     <main className={`${theme.bg} ${theme.text} min-h-screen font-sans transition-colors duration-300 overflow-x-hidden`}>
@@ -320,24 +356,37 @@ export default function HomeClient() {
               "
             />
 
-            {/* PHONE - Scaled down slightly on mobile to prevent crowding */}
+            {/* PHONE - PREMIUM LOOK + PREMIUM CARD */}
             <div className="relative z-10">
               <div className="
                 relative 
                 w-[160px] md:w-[320px] 
                 h-[320px] md:h-[620px] 
-                bg-black border-[8px] md:border-[10px] border-gray-900 
-                rounded-[2rem] md:rounded-[2.5rem] 
-                shadow-2xl overflow-hidden ring-1 ring-gray-800 animate-float
+                bg-black 
+                border-[6px] md:border-[8px] border-[#1a1a1a] /* PREMIUM DARK BORDER */
+                rounded-[2.5rem] md:rounded-[3rem] 
+                shadow-[0_20px_50px_-10px_rgba(0,0,0,0.5)] /* DEEP SHADOW */
+                overflow-hidden 
+                ring-1 ring-gray-700 /* METALLIC RING */
+                animate-float
               ">
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 md:w-28 h-5 md:h-6 bg-gray-900 rounded-b-xl z-30"></div>
-                  <div className="w-full h-full bg-gray-100 flex flex-col items-center justify-center p-4 md:p-6 text-center relative">
-                    <img src="/logo.png" alt="Logo" className="w-32 md:w-45 h-16 md:h-25 object-contain mb-3 md:mb-4 animate-pulse" />
-                    <h2 className="text-2xl md:text-4xl font-black text-gray-900 mb-3 md:mb-5 font-potta">
+                  {/* Dynamic Island / Notch */}
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 md:w-32 h-5 md:h-7 bg-black rounded-b-2xl z-30 shadow-md"></div>
+                  
+                  {/* PHONE SCREEN CONTENT */}
+                  <div className="w-full h-full bg-zinc-50 flex flex-col items-center justify-center p-4 md:p-6 text-center relative overflow-hidden">
+                    
+                    {/* Glass Reflection Effect */}
+                    <div className="absolute -top-40 -right-20 w-[150%] h-[150%] bg-gradient-to-b from-white/10 to-transparent rotate-12 pointer-events-none z-10"></div>
+
+                    {/* ❌ REMOVED DIGITAL ID CARD FROM HERE AS REQUESTED */}
+
+                    <img src="/logo.png" alt="Logo" className="w-32 md:w-45 h-16 md:h-25 object-contain mb-3 md:mb-4 animate-pulse relative z-0" />
+                    <h2 className="text-2xl md:text-4xl font-black text-gray-900 mb-3 md:mb-5 font-potta relative z-0">
                       <span className="text-orange-500">FYT</span> LYF
                     </h2>
-                    <div className="w-8 md:w-10 h-1 bg-orange-500 rounded-full mb-4 md:mb-8"></div>
-                    <div className="space-y-0">
+                    <div className="w-8 md:w-10 h-1 bg-orange-500 rounded-full mb-4 md:mb-8 relative z-0"></div>
+                    <div className="space-y-0 relative z-0">
                       <h3 className="text-[10px] md:text-xs font-bold text-gray-800 leading-tight">
                         FEEL YOUR TRANSFORMATION<br />
                       </h3>
@@ -732,6 +781,40 @@ export default function HomeClient() {
           <h2 className="text-4xl md:text-6xl font-extrabold mt-3 leading-tight">Be The First To Enter The FYT LYF Revolution</h2>
           
           <div className={`mt-10 rounded-3xl p-10 ${theme.cardBg}`}>
+            
+            {/* ⭐ STEP 6 — RETURNING USER CARD */}
+            {savedUser && (
+              <div className={`rounded-3xl p-8 mb-8 border ${theme.border} ${theme.cardBg}`}>
+                
+                <h2 className="text-2xl font-extrabold">
+                  Welcome Back, {savedUser.name}! 🔥
+                </h2>
+
+                <p className={`${theme.textSub} mt-2`}>
+                  You are already pre-registered.
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5 text-sm">
+                  <div className={`border ${theme.border} rounded-xl p-4`}>
+                    <p className="text-gray-400">Email</p>
+                    <p className="font-semibold">{savedUser.email}</p>
+                  </div>
+
+                  <div className={`border ${theme.border} rounded-xl p-4`}>
+                    <p className="text-gray-400">Phone</p>
+                    <p className="font-semibold">{savedUser.phone}</p>
+                  </div>
+
+                  <div className={`border ${theme.border} rounded-xl p-4 md:col-span-2`}>
+                    <p className="text-gray-400">Plan</p>
+                    <p className={`font-bold text-xl ${planColors[savedUser.planPreference]}`}>
+                      {planLabels[savedUser.planPreference]}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* ✅ UPDATED FORM WITH CHECKBOX LOGIC */}
             <form 
               onSubmit={async (e) => {
@@ -741,6 +824,8 @@ export default function HomeClient() {
                 const name = form.name.value.trim();
                 const email = form.email.value.trim();
                 const phone = form.phone.value.trim();
+                // ⭐ STEP 4 — GET PLAN PREFERENCE
+                const planPreference = form.planPreference.value;
                 const agree = form.agree.checked; 
               
                 const indiaPhoneRegex = /^[6-9]\d{9}$/;
@@ -756,20 +841,38 @@ export default function HomeClient() {
                 }
               
                 try {
+                  // 🔥 REPLACE YOUR FIRESTORE SAVE
                   await addDoc(collection(db, "registrations"), {
                     name,
                     email,
                     phone,
+                    planPreference,
                     createdAt: serverTimestamp(),
                     country: "India",
                     status: "pre_registered",
                   });
 
+                  // 🔥 ADD ANALYTICS
                   GA_EVENT("registration_success", {
                     category: "registration",
                     label: "pre_register",
                     value: 1,
                   });
+
+                  GA_EVENT("plan_interest_selected", {
+                    category: "registration",
+                    label: planPreference,
+                    value: 1,
+                  });
+
+                  // 🔥 SAVE LOCALLY
+                  localStorage.setItem(
+                    "fyt_registration",
+                    JSON.stringify({ name, email, phone, planPreference })
+                  );
+
+                  setSuccessData({ name, plan: planPreference });
+                  setSavedUser({ name, email, phone, planPreference });
               
                   showToast(`✅ Welcome ${name}! Registration Successful.`);
                   form.reset();
@@ -793,6 +896,26 @@ export default function HomeClient() {
               <div>
                 <label className="sr-only" htmlFor="phone">Indian Mobile Number</label>
                 <input id="phone" name="phone" required placeholder="Indian Mobile Number" className={`w-full rounded-xl px-5 py-4 outline-none transition ${theme.inputBg}`} />
+              </div>
+
+              {/* ⭐ STEP 5 — ADD PLAN DROPDOWN IN FORM (FIXED ACCESSIBILITY) */}
+              <div className="md:col-span-3">
+                <label htmlFor="planPreference" className="sr-only">Select Plan Interest</label>
+                <select
+                  id="planPreference"
+                  name="planPreference"
+                  required
+                  defaultValue=""
+                  className={`w-full rounded-xl px-5 py-4 outline-none transition ${theme.inputBg}`}
+                  aria-label="Select Plan Interest"
+                >
+                  <option value="" disabled>Select Plan Interest</option>
+                  <option value="free">Free</option>
+                  <option value="pro">Pro</option>
+                  <option value="pro_plus">Pro+</option>
+                  <option value="elite">Elite</option>
+                  <option value="not_decided">Not Decided Yet</option>
+                </select>
               </div>
 
               {/* ✅ ADDED CHECKBOX UI */}
@@ -932,8 +1055,56 @@ export default function HomeClient() {
       <div className={`fixed bottom-0 left-0 w-full font-bold text-center py-3 z-50 text-sm md:text-base shadow-2xl flex items-center justify-center gap-2 ${theme.stickyBar}`}>
         <span className="hidden md:inline">Registrations Closing Soon — </span>
         <span className="font-mono">{timeLeft.days}D : {timeLeft.hours}H : {timeLeft.mins}M : {timeLeft.secs}S</span>
-        <button onClick={() => scrollTo("register")} className={`ml-2 px-4 py-1 rounded-full text-xs font-bold transition ${isDark ? "bg-black text-orange-500" : "bg-white text-orange-600"}`}>Register</button>
+        
+        {/* ✅ CONDITIONAL RENDER BUTTON */}
+        <button 
+          onClick={() => scrollTo("register")} 
+          className={`ml-2 px-4 py-1 rounded-full text-xs font-bold transition flex items-center gap-2
+            ${savedUser 
+              ? "bg-green-500 text-white hover:bg-green-600 border border-green-400" 
+              : (isDark ? "bg-black text-orange-500" : "bg-white text-orange-600")}
+          `}
+        >
+          {savedUser ? (
+            <>
+              <span>✅</span> Already Registered
+            </>
+          ) : (
+            "Register"
+          )}
+        </button>
       </div>
+
+      {/* ⭐ STEP 7 — ADD THANK YOU CARD */}
+      {successData && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-xl flex items-center justify-center z-[999]">
+          <div className={`bg-zinc-900 border ${theme.border} rounded-3xl p-8 max-w-md text-center`}>
+            
+            <h2 className="text-3xl font-extrabold">
+              Thank You, {successData.name}! 🎯
+            </h2>
+
+            <p className={`${theme.textSub} text-sm mt-2`}>
+              Registration Successful
+            </p>
+
+            <p className={`text-2xl font-bold mt-3 ${planColors[successData.plan]}`}>
+              {planLabels[successData.plan]}
+            </p>
+
+            <p className="mt-5 text-gray-300 text-sm leading-relaxed">
+              {motivationMessages[successData.plan]}
+            </p>
+
+            <button
+              onClick={() => setSuccessData(null)}
+              className="mt-8 bg-orange-600 px-8 py-3 rounded-xl font-semibold hover:bg-orange-700"
+            >
+              Continue
+            </button>
+          </div>
+        </div>
+      )}
 
     </main>
   );
