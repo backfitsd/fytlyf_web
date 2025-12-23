@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "FYT LYF — Not Just Fitness. A Discipline Movement.",
   description:
     "Join FYT LYF – India’s most hardcore fitness revolution. Transformation challenges, discipline-based performance battles & powerful fitness memberships.",
-  
+
   metadataBase: new URL("https://fytlyf.in"),
 
   openGraph: {
@@ -18,10 +18,10 @@ export const metadata: Metadata = {
     locale: "en_IN",
     images: [
       {
-        url: "/logo.png",
+        url: "/logo.png", // Website preview image
         width: 1200,
         height: 630,
-        alt: "FYT LYF Logo",
+        alt: "FYT LYF",
       },
     ],
   },
@@ -34,10 +34,11 @@ export const metadata: Metadata = {
     images: ["/logo.png"],
   },
 
+  // ⭐ THIS controls what Google shows as favicon
   icons: {
-    icon: "/logo.png",
-    shortcut: "/logo.png",
-    apple: "/logo.png",
+    icon: "/brandicon.png",
+    shortcut: "/brandicon.png",
+    apple: "/brandicon.png",
   },
 };
 
@@ -48,6 +49,22 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        {/* Brand Organization Schema - Helps Google show correct branding */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "FYT LYF",
+              url: "https://fytlyf.in",
+              logo: "https://fytlyf.in/brandicon.png",
+            }),
+          }}
+        />
+      </head>
+
       <body>{children}</body>
     </html>
   );

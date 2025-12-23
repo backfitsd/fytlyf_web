@@ -235,6 +235,7 @@ export default function HomeClient() {
             <button onClick={() => scrollTo("pricing")} className={`hover:${theme.text} transition`}>Membership</button>
             <button onClick={() => scrollTo("register")} className={`hover:${theme.text} transition`}>Register</button>
             <button onClick={() => scrollTo("about")} className={`hover:${theme.text} transition`}>About</button>
+            <button onClick={() => scrollTo("creators")} className={`hover:${theme.text} transition`}>Creators</button>
           </nav>
 
           <div className="flex items-center gap-4">
@@ -261,6 +262,7 @@ export default function HomeClient() {
             <button onClick={() => scrollTo("arena")} className="block w-full py-2">Arena</button>
             <button onClick={() => scrollTo("pricing")} className="block w-full py-2">Membership</button>
             <button onClick={() => scrollTo("register")} className="block w-full py-2">Register</button>
+            <button onClick={() => scrollTo("creators")} className="block w-full py-2">Creators</button>
           </div>
         )}
       </header>
@@ -379,9 +381,20 @@ export default function HomeClient() {
                     {/* Glass Reflection Effect */}
                     <div className="absolute -top-40 -right-20 w-[150%] h-[150%] bg-gradient-to-b from-white/10 to-transparent rotate-12 pointer-events-none z-10"></div>
 
-                    {/* ❌ REMOVED DIGITAL ID CARD FROM HERE AS REQUESTED */}
+                    {/* 📱 4️⃣ INSIDE THE PHONE — RUTHLESS COMMANDER 2026 MESSAGE (MOVED TO TOP) */}
+                    <div className="absolute top-8 md:top-12 left-0 w-full text-center z-20">
+                      <p className="text-[10px] md:text-xs font-black text-orange-600 tracking-[0.2em] uppercase drop-shadow-sm">
+                        2026 Is Coming
+                      </p>
+                      <p className="text-[9px] md:text-[10px] font-bold text-gray-800 leading-tight mt-1 opacity-90">
+                        This time you don’t “try”.
+                        <br />
+                        This time… you transform.
+                      </p>
+                    </div>
 
                     <img src="/logo.png" alt="Logo" className="w-32 md:w-45 h-16 md:h-25 object-contain mb-3 md:mb-4 animate-pulse relative z-0" />
+                    
                     <h2 className="text-2xl md:text-4xl font-black text-gray-900 mb-3 md:mb-5 font-potta relative z-0">
                       <span className="text-orange-500">FYT</span> LYF
                     </h2>
@@ -416,12 +429,38 @@ export default function HomeClient() {
         </div>
       </section>
 
+      {/* ⚔️ 2️⃣ "You’re Not Joining An App" Section */}
+      <section className={`py-24 px-6 border-t ${theme.border} reveal`}>
+        <div className="max-w-6xl mx-auto text-center">
+
+          <h2 className="text-4xl md:text-6xl font-extrabold">
+            You’re Not Joining An App.
+            <span className="text-orange-500 block mt-2">
+              You’re Enlisting Into A Discipline Army.
+            </span>
+          </h2>
+
+          <p className={`mt-5 max-w-3xl mx-auto ${theme.textSub} text-lg`}>
+            This isn’t a place for casual people.
+            This isn’t for “I’ll see what happens”.
+            FYT LYF is for the ones who want to become dangerous in life.
+          </p>
+
+        </div>
+      </section>
+
       {/* ================= ARENA ================= */}
       <section id="arena" className={`py-24 px-6 reveal ${isDark ? "bg-black" : "bg-white"}`}>
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-orange-500 tracking-[6px] text-sm">THE ARENA</h2>
           <h3 className="text-4xl md:text-6xl font-extrabold mt-3">Choose Your War</h3>
           <p className={`mt-4 max-w-3xl mx-auto ${theme.textSub}`}>Two paths. One goal — Discipline. Choose how you want to rise.</p>
+
+          {/* ✅ SOFT TONE FREE CHALLENGES MESSAGE */}
+          <p className={`mt-2 text-sm ${theme.textSub}`}>
+            All FYT LYF challenges are completely free to participate.  
+            No entry charges. Just discipline, commitment and your effort 💪
+          </p>
 
           {/* ✅ FIXED BANNER FOR LIGHT MODE */}
           <div className={`mt-6 inline-flex items-center gap-3 border px-5 py-2 rounded-xl shadow-lg alert-glow ${theme.alertBg}`}>
@@ -442,6 +481,15 @@ export default function HomeClient() {
               <p className="text-orange-500 font-semibold">TRANSFORMATION ARENA</p>
               <h4 className="text-3xl font-bold mt-3">75 HARD Challenge</h4>
               <p className={`mt-4 ${theme.textSub}`}>75 Days. No excuses. Proof-based transformation.</p>
+
+              {/* 🩸 3️⃣ DARK CINEMATIC WAR VIBES */}
+              <p className="text-red-500 font-semibold mt-6">
+                This Challenge Will Break Weak People.
+              </p>
+              <p className={`${theme.textSub} text-sm`}>
+                If you survive it…
+                you will never see yourself the same way again.
+              </p>
               
               {/* ✅ FIXED SCARCITY WARNING FOR LIGHT MODE */}
               <div className={`mt-6 w-full border px-4 py-2 rounded-lg text-center shadow-md ${theme.alertBg} ${theme.alertShadow}`}>
@@ -451,6 +499,47 @@ export default function HomeClient() {
               </div>
               
               <button onClick={() => scrollTo("register")} className="mt-8 bg-orange-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-orange-700 transition shadow-lg glow">Join Transformation</button>
+
+              {/* ✅ SOFT TONE FREE MESSAGE CARD 1 (UPDATED) */}
+              <p className="mt-3 text-green-400 text-sm font-semibold">
+                ✅ Free to Join
+              </p>
+
+              {/* 🎖️ 75 HARD — REWARDS */}
+              <div className="mt-8 border rounded-2xl p-6 bg-black/20">
+                <h4 className="text-xl font-bold text-orange-500 uppercase tracking-wide">
+                  Rewards
+                </h4>
+
+                <p className={`${theme.textSub} mt-2 text-sm`}>
+                  Every genuine finisher (followed rules correctly) earns:
+                </p>
+
+                <ul className="mt-4 text-sm space-y-2">
+                  <li>🏅 Digital Certificate</li>
+                  <li>🎖️ Official FYT LYF Badge</li>
+                  <li>🥇 Winner Medal (after verification)</li>
+                  <li>👕 Official FYT LYF Tshirt (for valid completion)</li>
+                </ul>
+
+                <div className="mt-5 border rounded-xl p-4 bg-orange-500/10 border-orange-500/40">
+                  <p className="text-sm font-semibold text-orange-400">
+                    Top Performers Can Also Win:
+                  </p>
+                  <p className="text-sm mt-1 text-gray-300 leading-relaxed">
+                    Protein • Creatine • Multivitamins • FYT LYF Premium Tshirts • Caps
+                    • Bottles • Resistance Bands & many more amazing rewards 🎁
+                  </p>
+                </div>
+
+                <ul className="mt-4 text-[13px] text-gray-400 space-y-1">
+                  <li>• Digital rewards guaranteed for valid finishers</li>
+                  <li>• Physical rewards limited to top performers</li>
+                  <li>• Free Shipping • India Only</li>
+                  <li>• Complete verification happens inside the app</li>
+                </ul>
+              </div>
+
             </motion.div>
 
             <motion.div
@@ -472,6 +561,37 @@ export default function HomeClient() {
               </div>
 
               <button onClick={() => scrollTo("register")} className={`mt-8 border ${theme.border} px-8 py-4 rounded-xl font-semibold hover:bg-orange-500 hover:text-white transition`}>Enter Performance Battles</button>
+
+              {/* ✅ SOFT TONE FREE MESSAGE CARD 2 (UPDATED) */}
+              <p className="mt-3 text-green-400 text-sm font-semibold">
+                ✅ Free to Participate
+              </p>
+
+              {/* ⚔️ PERFORMANCE BATTLES — REWARDS */}
+              <div className="mt-8 border rounded-2xl p-6 bg-black/20">
+                <h4 className="text-xl font-bold text-orange-500 uppercase tracking-wide">
+                  Rewards
+                </h4>
+
+                <p className={`${theme.textSub} mt-2 text-sm`}>
+                  Winners are decided based on leaderboard performance for each challenge.
+                </p>
+
+                <ul className="mt-4 text-sm space-y-2">
+                  <li>🏅 Digital Achievement Badge</li>
+                  <li>📜 Official Certificate</li>
+                  <li>🎖️ Winner Medal</li>
+                  <li>👕 FYT LYF Official Merchandise (challenge dependent)</li>
+                </ul>
+
+                <ul className="mt-4 text-[13px] text-gray-400 space-y-1">
+                  <li>• Winner count depends on each challenge</li>
+                  <li>• Rewards may vary by difficulty & event</li>
+                  <li>• All performances are verified by FYT LYF Team</li>
+                  <li>• FYT LYF decision is final & fair</li>
+                </ul>
+              </div>
+
             </motion.div>
           </div>
         </div>
@@ -525,6 +645,12 @@ export default function HomeClient() {
             <div className={`border rounded-2xl py-6 ${theme.cardBg}`}><p className="text-5xl font-extrabold text-orange-500">{timeLeft.mins}</p><p className={`text-sm tracking-widest mt-2 ${theme.textSub}`}>MINS</p></div>
             <div className={`border rounded-2xl py-6 ${theme.cardBg}`}><p className="text-5xl font-extrabold text-orange-500">{timeLeft.secs}</p><p className={`text-sm tracking-widest mt-2 ${theme.textSub}`}>SECS</p></div>
           </div>
+          
+          {/* 🚀 5️⃣ LAUNCH DAY CINEMATIC BUILDUP */}
+          <p className="mt-4 text-orange-500 font-semibold">
+            1st January 2026 — The Day India Becomes More Disciplined.
+          </p>
+
           <button onClick={() => scrollTo("register")} className="mt-10 bg-orange-600 text-white px-10 py-4 rounded-xl font-semibold hover:bg-orange-700 transition shadow-lg glow">Pre Register Now</button>
         </div>
       </section>
@@ -533,17 +659,16 @@ export default function HomeClient() {
       <section id="pricing" className={`py-28 px-6 border-t ${theme.border} reveal`}>
         <div className="max-w-7xl mx-auto text-center">
 
-          <div className="inline-block mb-4 bg-red-600 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest animate-pulse shadow-lg shadow-red-500/30">
-             Limited Time Launch Pricing — Ends 31 Dec 2025
+          <div className="inline-block mb-4 bg-orange-600 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest animate-pulse shadow-lg shadow-orange-500/30">
+             2026 Fitness Revolution Pricing • Limited Time Founder Offer
           </div>
 
           <h2 className="text-orange-500 tracking-[6px] text-sm">MEMBERSHIP</h2>
           <p className="text-xl font-bold mt-2 text-gray-400">India’s Most Hardcore Fitness Membership</p>
           <h3 className="text-4xl md:text-6xl font-extrabold mt-3">Choose Your Power Level</h3>
 
-          <p className={`mt-4 max-w-3xl mx-auto ${theme.textSub}`}>Free to begin. Upgrade when you’re ready to dominate.</p>
-          <p className="mt-2 text-xs text-gray-400">
-            Inclusive of all taxes • Founder Pricing Ends 31 Dec 2025 • Prices revert to normal after launch
+          <p className="text-sm text-gray-400 mt-2">
+            Build your best body and discipline in 2026. Upgrade when you’re ready.
           </p>
 
           <div className="mt-16 grid md:grid-cols-4 gap-8">
@@ -561,13 +686,13 @@ export default function HomeClient() {
                 <div className="inline-block mt-2 bg-gray-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">Badge: Beginner Access</div>
                 
                 <h4 className="text-5xl font-extrabold mt-4">₹0</h4>
+                {/* ✅ 1️⃣ FREE → Add Same Style Emojis & Power Feel */}
                 <ul className={`text-sm mt-6 space-y-3 ${theme.textSub}`}>
                   <li>✅ Dashboard Access</li>
                   <li>✅ Basic Tracking</li>
                   <li>✅ Some Workouts</li>
-                  <li className="opacity-40 flex items-center gap-2">🔒 Premium Programs</li>
-                  <li className="opacity-40 flex items-center gap-2">🔒 Ad Free</li>
-                  <li className="opacity-40 flex items-center gap-2">🔒 AI Personalization</li>
+                  <li>🔥 Join All FYT LYF Challenges (Free)</li>
+                  <li>📘 Basic FYT Guides (Fitness • Health • Lifestyle)</li>
                 </ul>
               </div>
               <button onClick={() => scrollTo("register")} className={`mt-8 w-full border ${theme.border} px-8 py-4 rounded-xl font-semibold hover:bg-orange-500 hover:text-white transition`}>Get Started</button>
@@ -601,12 +726,13 @@ export default function HomeClient() {
 
                 <p className="text-sm line-through text-blue-300/60 mt-3">₹{proPrices[proPlan].original}</p>
                 <h4 className="text-5xl font-extrabold">₹{proPrices[proPlan].current}</h4>
+                {/* ✅ 2️⃣ PRO → Upgrade Feel & Icons Like Higher Plans */}
                 <ul className={`text-sm mt-6 space-y-3 ${theme.textSub}`}>
-                  <li>✅ Premium Workout Programs</li>
-                  <li>✅ Advanced Tracking</li>
-                  <li>✅ Ad Free</li>
-                  <li className="opacity-40 flex items-center gap-2">🔒 Personalized AI Plans</li>
-                  <li className="opacity-40 flex items-center gap-2">🔒 Deep Analytics</li>
+                  <li>✅ Everything in FREE</li>
+                  <li>💪 Premium Workout Programs</li>
+                  <li>📊 Advanced Tracking</li>
+                  <li>🚫 Ad Free Experience</li>
+                  <li>📘 PRO Guides (Fitness • Health • Skincare)</li>
                 </ul>
               </div>
               <button onClick={() => scrollTo("register")} className="mt-8 w-full bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition shadow-lg shadow-blue-500/30">Choose Pro</button>
@@ -644,14 +770,15 @@ export default function HomeClient() {
                 <h4 className="text-5xl font-extrabold">₹{plusPrices[plusPlan].current}</h4>
                 <ul className={`text-sm mt-6 space-y-3 ${theme.textSub}`}>
                   <li>✅ Everything in PRO</li>
-                  <li>✅ Personalized AI Plans</li>
-                  <li>✅ Deep Analytics</li>
-                  <li>✅ Exclusive Challenges</li>
-                  <li>✅ Premium Content Vault</li>
+                  <li>🤖 Real AI Personalized Training Plans</li>
+                  <li>📊 Deep Performance Analytics</li>
+                  <li>🔥 Exclusive Pro+ Only Challenges</li>
+                  <li>🎖️ Higher Reward Priority & Verification Priority</li>
+                  <li>📘 Premium Transformation Guides (Fitness + Health + Skincare + Lifestyle)</li>
                 </ul>
               </div>
               <div>
-                <p className="text-xs text-center text-gray-400 mb-2">No refunds • Renew at end of plan</p>
+                <p className="text-xs text-center text-gray-400 mt-3">Most Loved by Serious Achievers 💪</p>
                 <button onClick={() => scrollTo("register")} className="w-full bg-orange-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-orange-700 transition shadow-lg shadow-orange-500/30 transform hover:-translate-y-1">Become Pro+</button>
               </div>
             </motion.div>
@@ -666,7 +793,11 @@ export default function HomeClient() {
             >
               <div>
                 <p className="text-yellow-500 font-semibold">ELITE</p>
-                <div className="inline-block mt-2 bg-yellow-500 text-black px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">Badge: VIP Elite Discipline Circle</div>
+                {/* 👑 3️⃣ ELITE Badge → Shorter but STILL Royal */}
+                <div className="inline-block mt-2 bg-yellow-500 text-black px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+                  Badge: ELITE CIRCLE
+                </div>
+                <p className="text-xs text-yellow-400 mt-2">Limited Members Only</p>
 
                 <div className="mt-3 flex gap-2">
                   {[3, 6].map((m) => (
@@ -685,15 +816,17 @@ export default function HomeClient() {
                 <p className="text-sm line-through text-yellow-300/60 mt-3">₹{elitePrices[elitePlan].original}</p>
                 <h4 className="text-5xl font-extrabold">₹{elitePrices[elitePlan].current}</h4>
                 <ul className={`text-sm mt-6 space-y-3 ${theme.textSub}`}>
-                  <li>✅ AI + Human Hybrid Coaching</li>
-                  <li>✅ Human Fitness Review</li>
-                  <li>✅ VIP Badges</li>
-                  <li>✅ Guaranteed Physical Kit</li>
-                  <li>✅ Highest Priority</li>
+                  <li>✅ Everything in PRO+</li>
+                  <li>🤝 AI + Human Hybrid Coaching Support</li>
+                  <li>🧠 Human Fitness Review</li>
+                  <li>🏆 Elite VIP Identity Status</li>
+                  <li>🎁 Guaranteed Physical Kit</li>
+                  <li>🚀 Highest Priority Everywhere</li>
+                  <li>📘 Elite Master Guides & Advanced Resources</li>
                 </ul>
               </div>
               <div>
-                <p className="text-xs text-center text-gray-400 mb-2">No refunds • Renew at end of plan</p>
+                <p className="text-xs text-center text-gray-400 mt-3">Exclusive • Limited • Premium</p>
                 <button onClick={() => scrollTo("register")} className={`w-full border-2 ${theme.border} px-8 py-4 rounded-xl font-semibold hover:bg-orange-500 hover:text-white transition`}>Unlock Elite</button>
               </div>
             </motion.div>
@@ -774,11 +907,46 @@ export default function HomeClient() {
         </div>
       </section>
 
+      {/* 🔥 1️⃣ THE “JOIN THE MOVEMENT” OATH SECTION */}
+      <section className={`py-28 px-6 border-t ${theme.border} reveal`}>
+        <div className="max-w-6xl mx-auto text-center">
+
+          <p className="text-orange-500 tracking-[6px] text-sm">
+            THE MOVEMENT
+          </p>
+
+          <h2 className="text-4xl md:text-6xl font-extrabold leading-tight">
+            The Discipline Oath
+          </h2>
+
+          <div className="mt-10 text-lg font-semibold space-y-4">
+            <p>I will not rely on motivation. I will build discipline.</p>
+            <p>I will not seek shortcuts. I will earn my results.</p>
+            <p>I will not quit when it hurts. I will grow when it hurts.</p>
+            <p>I will respect my body. I will dominate my excuses.</p>
+          </div>
+
+          <p className="mt-10 text-gray-400 uppercase text-sm tracking-[5px]">
+            If this is you…
+          </p>
+
+          <div className="mt-6 bg-orange-600 text-white px-10 py-4 rounded-xl inline-block font-bold shadow-lg glow">
+            Join The Movement — FYT LYF
+          </div>
+
+        </div>
+      </section>
+
       {/* ================= REGISTER ================= */}
       <section id="register" className={`py-28 px-6 border-t ${theme.border} reveal`}>
         <div className="max-w-5xl mx-auto text-center">
           <p className="text-orange-500 tracking-[6px] text-sm">PRE REGISTRATION</p>
           <h2 className="text-4xl md:text-6xl font-extrabold mt-3 leading-tight">Be The First To Enter The FYT LYF Revolution</h2>
+          
+          {/* ⚡ 4️⃣ LIVE ENERGY FEEL */}
+          <p className="text-green-400 font-semibold mt-3">
+            Thousands preparing to change their life in 2026. You’re not alone.
+          </p>
           
           <div className={`mt-10 rounded-3xl p-10 ${theme.cardBg}`}>
             
@@ -964,6 +1132,25 @@ export default function HomeClient() {
 
       {/* ================= REWARDS & APP & FOOTER ================= */}
       
+      {/* 👑 6️⃣ “Legend Status Recognition” Section */}
+      <section className={`py-24 px-6 border-t ${theme.border} reveal`}>
+        <div className="max-w-6xl mx-auto text-center">
+
+          <h2 className="text-4xl md:text-6xl font-extrabold leading-tight">
+            Legends Will Be Remembered.
+            <span className="text-orange-500 block">
+              Not Just Rewarded.
+            </span>
+          </h2>
+
+          <p className={`mt-5 max-w-3xl mx-auto ${theme.textSub} text-lg`}>
+            People who complete FYT LYF challenges don’t just get medals.
+            They get respect. Identity. A different aura.
+          </p>
+
+        </div>
+      </section>
+      
       <section className={`py-24 px-6 border-t ${theme.border}`}>
          <div className="max-w-7xl mx-auto text-center">
             <h2 className="text-4xl font-extrabold">Earn Respect. <span className="text-orange-500">Win Glory.</span></h2>
@@ -984,6 +1171,77 @@ export default function HomeClient() {
             <div className={`rounded-3xl p-8 border border-orange-500`}><h3 className="text-xl font-bold">AI Powered</h3></div>
             <div className={`rounded-3xl p-8 border border-yellow-500`}><h3 className="text-xl font-bold">Community</h3></div>
           </div>
+        </div>
+      </section>
+
+      {/* ================= CREATORS / PARTNERS (MOVED HERE) ================= */}
+      <section id="creators" className={`py-24 px-6 border-t ${theme.border} reveal`}>
+        <div className="max-w-7xl mx-auto text-center">
+
+          <p className="text-orange-500 tracking-[6px] text-sm">
+            COLLAB WITH FYT LYF
+          </p>
+
+          <h2 className="text-4xl md:text-6xl font-extrabold mt-3 leading-tight">
+            Creator. Influencer. Athlete.
+            <span className="block text-orange-500 mt-1">
+              Or Someone Who Loves Fitness?
+            </span>
+          </h2>
+
+          <p className={`mt-4 max-w-3xl mx-auto ${theme.textSub} text-lg`}>
+            We love collaborating with passionate people.  
+            If you create content, inspire others or simply want to grow with FYT LYF —
+            let’s build something powerful together.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-8 mt-14">
+
+            <div className={`rounded-3xl p-8 border ${theme.border} ${theme.cardHover}`}>
+              <h3 className="text-xl font-bold">Creators & Influencers</h3>
+              <p className={`mt-3 text-sm ${theme.textSub}`}>
+                Collaborate with FYT LYF and be part of India’s Discipline Movement.
+              </p>
+            </div>
+
+            <div className={`rounded-3xl p-8 border border-orange-500 ${theme.cardHover}`}>
+              <h3 className="text-xl font-bold text-orange-500">Athletes & Performers</h3>
+              <p className={`mt-3 text-sm ${theme.textSub}`}>
+                Represent discipline, strength and performance.
+              </p>
+            </div>
+
+            <div className={`rounded-3xl p-8 border border-yellow-500 ${theme.cardHover}`}>
+              <h3 className="text-xl font-bold text-yellow-400">Community Leaders</h3>
+              <p className={`mt-3 text-sm ${theme.textSub}`}>
+                Work with us for challenges, events & impact.
+              </p>
+            </div>
+
+          </div>
+
+          <p className={`mt-10 text-sm ${theme.textSub}`}>
+            Want to collaborate with FYT LYF?
+          </p>
+
+          <div className="flex flex-wrap gap-4 justify-center mt-5">
+            <a 
+              href="mailto:founder@fytlyf.in"
+              className="bg-orange-600 text-white px-8 py-3 rounded-xl font-semibold hover:bg-orange-700 transition shadow-lg glow"
+            >
+              📧 Email — founder@fytlyf.in
+            </a>
+
+            <a 
+              href="https://www.instagram.com/_fyt_lyf?igsh=Nm1vY2VhZDYzMzJ0"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`border ${theme.border} px-8 py-3 rounded-xl font-semibold hover:bg-orange-500 hover:text-white transition`}
+            >
+              🔥 DM Us on Instagram
+            </a>
+          </div>
+
         </div>
       </section>
 
@@ -1020,7 +1278,7 @@ export default function HomeClient() {
               </li>
               <li>
                 <a 
-                  href="0" 
+                  href="https://www.youtube.com/channel/UCd_o-TS6GQk5KvFd8YCltMA" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-orange-500 transition"
