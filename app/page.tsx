@@ -69,7 +69,7 @@ export default function HomeClient() {
     border: isDark ? "border-white/10" : "border-black/10",
     cardBg: isDark ? "bg-zinc-900/40 border-gray-700" : "bg-gray-100 border-gray-200",
     cardHover: isDark ? "hover:bg-zinc-900/70" : "hover:bg-gray-200",
-    navBg: isDark ? "bg-black/60" : "bg-white/80",
+    navBg: isDark ? "bg-black/80" : "bg-white/80",
     heroGradient: isDark ? "from-zinc-900/40 via-black to-black" : "from-gray-200/40 via-white to-white",
     inputBg: isDark ? "bg-black border-gray-700 focus:border-orange-500" : "bg-white border-gray-300 focus:border-orange-600",
     stickyBar: isDark ? "bg-orange-600 text-black" : "bg-orange-500 text-white",
@@ -165,21 +165,8 @@ export default function HomeClient() {
   }, []);
 
   return (
-    <main className={`${theme.bg} ${theme.text} min-h-screen font-sans transition-colors duration-300 overflow-x-hidden`}>
+    <main className={`${theme.bg} ${theme.text} min-h-screen font-sans transition-colors duration-300 overflow-x-hidden relative`}>
       
-      {/* GOOGLE ANALYTICS SCRIPTS */}
-      <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`} />
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
-          `,
-        }}
-      />
-
       {/* GLOBAL STYLES & FONTS */}
       <style dangerouslySetInnerHTML={{
           __html: `
@@ -189,6 +176,13 @@ export default function HomeClient() {
           .reveal { opacity:0; transform:translateY(40px); transition:all .8s ease-out; }
           .reveal.active { opacity:1; transform:translateY(0); }
           .glow { box-shadow:0 0 25px rgba(255,98,0,.3); }
+          
+          /* ✅ BACKGROUND PATTERN */
+          body {
+            background-image: radial-gradient(${isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.03)'} 1px, transparent 1px);
+            background-size: 30px 30px;
+          }
+
           /* Gentle Float for Phone */
           @keyframes float {
             0% { transform: translateY(0px); }
@@ -219,12 +213,12 @@ export default function HomeClient() {
       />
 
       {/* ================= NAVBAR ================= */}
-      <header className={`fixed top-0 left-0 w-full z-50 ${theme.navBg} backdrop-blur border-b ${theme.border} transition-all duration-300`}>
+      <header className={`fixed top-0 left-0 w-full z-50 ${theme.navBg} backdrop-blur-md border-b ${theme.border} transition-all duration-300`}>
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           
           {/* LOGO AREA */}
           <div className="flex items-center gap-2">
-            <img src="/logo.png" alt="Logo" className="w-18 h-10 object-contain" />
+            <img src="/logo.png" alt="FYT LYF Logo" className="w-18 h-10 object-contain" />
             <h1 className="text-xl tracking-wider font-potta">
               <span className="text-orange-500">FYT</span> LYF
             </h1>
@@ -298,35 +292,35 @@ export default function HomeClient() {
                 FYT LYF
               </p>
             </Reveal>
+
             <Reveal>
               <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
-                NOT JUST FITNESS. <br />
-                <span className="text-orange-500">A DISCIPLINE MOVEMENT.</span>
+                A DISCIPLINE-FIRST <br />
+                FITNESS PLATFORM.
               </h1>
             </Reveal>
+
             <Reveal>
               <p className={`text-base md:text-lg max-w-md ${theme.textSub} leading-relaxed`}>
-                India’s Most Hardcore, Community Driven, Discipline Based Fitness Revolution.
+                Built for people who want real transformation. Train with structure.
+                Compete in verified challenges. Build discipline that lasts beyond motivation.
               </p>
             </Reveal>
+
             <Reveal>
               <p className="text-orange-500 text-sm font-semibold tracking-wide">
-                Challenges Open • Launching Jan 1, 2026
+                Registrations open • Challenges begin 1 Jan 2026
               </p>
             </Reveal>
+
             <Reveal>
               <div className="flex flex-wrap gap-4 pt-2">
-                <button 
-                  onClick={() => scrollTo("arena")} 
-                  className="bg-orange-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-orange-700 transition shadow-lg shadow-orange-600/20 transform hover:-translate-y-1"
-                >
-                  Enter The Arena
+                <button onClick={() => scrollTo("arena")} className="bg-orange-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-orange-700 transition shadow-lg shadow-orange-600/20 transform hover:-translate-y-1">
+                  Join Free Challenges
                 </button>
-                <button 
-                  onClick={() => scrollTo("pricing")} 
-                  className={`border ${theme.border} px-6 py-3 rounded-xl font-bold hover:bg-zinc-800 hover:text-white transition transform hover:-translate-y-1`}
-                >
-                  Become A Member
+
+                <button onClick={() => scrollTo("pricing")} className={`border ${theme.border} px-6 py-3 rounded-xl font-bold hover:bg-zinc-800 hover:text-white transition transform hover:-translate-y-1`}>
+                  View Memberships
                 </button>
               </div>
             </Reveal>
@@ -340,17 +334,17 @@ export default function HomeClient() {
             items-end 
             justify-center 
             w-full
-            gap-2 md:gap-10 /* GAP ENSURES SEPARATION */
+            gap-1 md:gap-10 /* Tighter gap on mobile */
             mt-10 md:mt-0
             order-1 md:order-2
           ">
 
-            {/* Female - Sized to fit Mobile without hiding */}
+            {/* Female - Sized to fit Mobile */}
             <img 
               src="/avatars/female.png"
               alt="Female Avatar"
               className="
-                h-[200px] 
+                h-[180px] 
                 md:h-[420px] 
                 object-contain
                 drop-shadow-[0_0_35px_rgba(255,98,0,.3)]
@@ -375,48 +369,39 @@ export default function HomeClient() {
                   {/* Dynamic Island / Notch */}
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 md:w-32 h-5 md:h-7 bg-black rounded-b-2xl z-30 shadow-md"></div>
                   
-                  {/* PHONE SCREEN CONTENT */}
-                  <div className="w-full h-full bg-zinc-50 flex flex-col items-center justify-center p-4 md:p-6 text-center relative overflow-hidden">
+                  {/* PHONE SCREEN CONTENT - CENTERED */}
+                  <div className="w-full h-full bg-zinc-50 flex flex-col items-center justify-center p-4 px-1 md:p-6 text-center relative overflow-hidden">
                     
                     {/* Glass Reflection Effect */}
                     <div className="absolute -top-40 -right-20 w-[150%] h-[150%] bg-gradient-to-b from-white/10 to-transparent rotate-12 pointer-events-none z-10"></div>
 
-                    {/* 📱 4️⃣ INSIDE THE PHONE — RUTHLESS COMMANDER 2026 MESSAGE (MOVED TO TOP) */}
-                    <div className="absolute top-8 md:top-12 left-0 w-full text-center z-20">
-                      <p className="text-[10px] md:text-xs font-black text-orange-600 tracking-[0.2em] uppercase drop-shadow-sm">
-                        2026 Is Coming
-                      </p>
-                      <p className="text-[9px] md:text-[10px] font-bold text-gray-800 leading-tight mt-1 opacity-90">
-                        This time you don’t “try”.
-                        <br />
-                        This time… you transform.
-                      </p>
-                    </div>
-
-                    <img src="/logo.png" alt="Logo" className="w-32 md:w-45 h-16 md:h-25 object-contain mb-3 md:mb-4 animate-pulse relative z-0" />
+                    <img src="/logo.png" alt="FYT LYF Logo" className="w-24 md:w-45 h-auto object-contain mb-3 animate-pulse relative z-0" />
                     
-                    <h2 className="text-2xl md:text-4xl font-black text-gray-900 mb-3 md:mb-5 font-potta relative z-0">
+                    <h2 className="text-xl md:text-4xl font-black text-gray-900 mb-2 font-potta relative z-0">
                       <span className="text-orange-500">FYT</span> LYF
                     </h2>
-                    <div className="w-8 md:w-10 h-1 bg-orange-500 rounded-full mb-4 md:mb-8 relative z-0"></div>
-                    <div className="space-y-0 relative z-0">
-                      <h3 className="text-[10px] md:text-xs font-bold text-gray-800 leading-tight">
-                        FEEL YOUR TRANSFORMATION<br />
+                    <div className="w-6 md:w-10 h-1 bg-orange-500 rounded-full mb-3 relative z-0"></div>
+                    
+                    {/* ✅ FIXED TEXT ALIGNMENT - SINGLE LINES ON MOBILE */}
+                    <div className="space-y-1 relative z-0 w-full">
+                      <h3 className="text-[7px] md:text-xs font-extrabold text-gray-800 leading-none whitespace-nowrap">
+                        FEEL YOUR TRANSFORMATION
                       </h3>
-                      <h3 className="text-[10px] md:text-xs font-bold text-orange-500 leading-tight">
-                        LOVE YOUR FITNESS<br />
+                      <h3 className="text-[7px] md:text-xs font-extrabold text-orange-500 leading-none whitespace-nowrap">
+                        LOVE YOUR FITNESS
                       </h3>
                     </div>
+
                   </div>
               </div>
             </div>
 
-            {/* Male - Sized to fit Mobile without hiding */}
+            {/* Male - Sized to fit Mobile */}
             <img 
               src="/avatars/male.png"
               alt="Male Avatar"
               className="
-                h-[210px] 
+                h-[190px] 
                 md:h-[430px] 
                 object-contain
                 drop-shadow-[0_0_35px_rgba(255,98,0,.3)]
@@ -429,21 +414,70 @@ export default function HomeClient() {
         </div>
       </section>
 
-      {/* ⚔️ 2️⃣ "You’re Not Joining An App" Section */}
+      {/* 🧱 2️⃣ WHAT FYT LYF IS — New Section */}
+      <section className={`py-20 px-6 border-t ${theme.border} reveal`}>
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-3xl md:text-5xl font-extrabold">
+            What is FYT LYF?
+          </h2>
+
+          <p className={`mt-6 text-lg ${theme.textSub}`}>
+            FYT LYF is a discipline-first fitness ecosystem built for 2026.
+            Structured challenges. Proof-based progress. Real rewards.
+            A mindset movement built on effort, consistency, and integrity.
+          </p>
+        </div>
+      </section>
+
+      {/* 🔄 3️⃣ HOW IT WORKS — New Section */}
+      <section className={`py-24 px-6 border-t ${theme.border} reveal`}>
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-orange-500 tracking-[6px] text-sm uppercase">
+            HOW FYT LYF WORKS
+          </h2>
+          <h3 className="text-4xl md:text-6xl font-extrabold mt-3">
+            Simple. Structured. Powerful.
+          </h3>
+
+          <div className="grid md:grid-cols-4 gap-8 mt-14">
+            <div className="rounded-3xl p-8 border border-orange-500">
+              <h4 className="text-xl font-bold">Join Free</h4>
+              <p className={`${theme.textSub} mt-2 text-sm`}>Registration open now</p>
+            </div>
+
+            <div className={`rounded-3xl p-8 border ${theme.border}`}>
+              <h4 className="text-xl font-bold">Pick a Challenge</h4>
+              <p className={`${theme.textSub} mt-2 text-sm`}>Choose your path</p>
+            </div>
+
+            <div className={`rounded-3xl p-8 border ${theme.border}`}>
+              <h4 className="text-xl font-bold">Submit Proof Daily</h4>
+              <p className={`${theme.textSub} mt-2 text-sm`}>Verified discipline</p>
+            </div>
+
+            <div className="rounded-3xl p-8 border border-yellow-500">
+              <h4 className="text-xl font-bold">Earn Status & Rewards</h4>
+              <p className={`${theme.textSub} mt-2 text-sm`}>Digital + physical</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ⚔️ "More Than An App" Section (Reframed to be Friendly) */}
       <section className={`py-24 px-6 border-t ${theme.border} reveal`}>
         <div className="max-w-6xl mx-auto text-center">
 
           <h2 className="text-4xl md:text-6xl font-extrabold">
-            You’re Not Joining An App.
+            More Than Just An App.
             <span className="text-orange-500 block mt-2">
-              You’re Enlisting Into A Discipline Army.
+              A Community That Grows Together.
             </span>
           </h2>
 
           <p className={`mt-5 max-w-3xl mx-auto ${theme.textSub} text-lg`}>
-            This isn’t a place for casual people.
-            This isn’t for “I’ll see what happens”.
-            FYT LYF is for the ones who want to become dangerous in life.
+            Fitness is a journey, not a race. Whether you are a beginner or an athlete,
+            FYT LYF gives you the structure and support to reach your goals.
+            We are in this together.
           </p>
 
         </div>
@@ -454,21 +488,16 @@ export default function HomeClient() {
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-orange-500 tracking-[6px] text-sm">THE ARENA</h2>
           <h3 className="text-4xl md:text-6xl font-extrabold mt-3">Choose Your War</h3>
-          <p className={`mt-4 max-w-3xl mx-auto ${theme.textSub}`}>Two paths. One goal — Discipline. Choose how you want to rise.</p>
+          
+          <p className={`mt-4 max-w-3xl mx-auto ${theme.textSub}`}>
+            Two powerful paths. One mission — Discipline. Choose how you want to grow.
+          </p>
 
           {/* ✅ SOFT TONE FREE CHALLENGES MESSAGE */}
           <p className={`mt-2 text-sm ${theme.textSub}`}>
             All FYT LYF challenges are completely free to participate.  
             No entry charges. Just discipline, commitment and your effort 💪
           </p>
-
-          {/* ✅ FIXED BANNER FOR LIGHT MODE */}
-          <div className={`mt-6 inline-flex items-center gap-3 border px-5 py-2 rounded-xl shadow-lg alert-glow ${theme.alertBg}`}>
-            <span className="text-red-500 text-lg">🔥</span>
-            <p className={`font-semibold tracking-wide uppercase ${theme.alertText}`}>
-              Seats Filling Fast — Limited Joining Window
-            </p>
-          </div>
 
           <div className="mt-14 grid md:grid-cols-2 gap-10">
             <motion.div
@@ -480,27 +509,23 @@ export default function HomeClient() {
             >
               <p className="text-orange-500 font-semibold">TRANSFORMATION ARENA</p>
               <h4 className="text-3xl font-bold mt-3">75 HARD Challenge</h4>
-              <p className={`mt-4 ${theme.textSub}`}>75 Days. No excuses. Proof-based transformation.</p>
+              
+              <p className={`mt-4 ${theme.textSub}`}>
+                Registration open now • Closes 31 Dec 2025<br/>
+                Starts 1 Jan 2026 • Free participation<br/>
+                Proof-based verification • Real rewards
+              </p>
 
-              {/* 🩸 3️⃣ DARK CINEMATIC WAR VIBES */}
-              <p className="text-red-500 font-semibold mt-6">
-                This Challenge Will Break Weak People.
+              <p className="text-orange-500 font-semibold mt-6">
+                A Challenge of True Consistency.
               </p>
               <p className={`${theme.textSub} text-sm`}>
-                If you survive it…
-                you will never see yourself the same way again.
+                Commit to yourself for 75 days.
+                It’s a journey of self-discovery and growth.
               </p>
-              
-              {/* ✅ FIXED SCARCITY WARNING FOR LIGHT MODE */}
-              <div className={`mt-6 w-full border px-4 py-2 rounded-lg text-center shadow-md ${theme.alertBg} ${theme.alertShadow}`}>
-                <span className={`font-bold tracking-wider uppercase text-sm ${theme.alertText}`}>
-                  🚨 High Demand — Spots Closing Soon
-                </span>
-              </div>
               
               <button onClick={() => scrollTo("register")} className="mt-8 bg-orange-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-orange-700 transition shadow-lg glow">Join Transformation</button>
 
-              {/* ✅ SOFT TONE FREE MESSAGE CARD 1 (UPDATED) */}
               <p className="mt-3 text-green-400 text-sm font-semibold">
                 ✅ Free to Join
               </p>
@@ -551,18 +576,15 @@ export default function HomeClient() {
             >
               <p className="text-orange-500 font-semibold">PERFORMANCE ARENA</p>
               <h4 className="text-3xl font-bold mt-3">Performance Battles</h4>
-              <p className={`mt-4 ${theme.textSub}`}>Compete. Push limits. Earn respect.</p>
               
-              {/* ✅ FIXED SCARCITY WARNING FOR LIGHT MODE */}
-              <div className={`mt-6 w-full border px-4 py-2 rounded-lg text-center shadow-md ${theme.alertBg} ${theme.alertShadow}`}>
-                <span className={`font-bold tracking-wider uppercase text-sm ${theme.alertText}`}>
-                  🚨 High Demand — Spots Closing Soon
-                </span>
-              </div>
-
+              <p className={`mt-4 ${theme.textSub}`}>
+                Open after launch • Free to join<br/>
+                Leaderboard based • Verified fairness<br/>
+                Digital rewards • Select physical rewards
+              </p>
+              
               <button onClick={() => scrollTo("register")} className={`mt-8 border ${theme.border} px-8 py-4 rounded-xl font-semibold hover:bg-orange-500 hover:text-white transition`}>Enter Performance Battles</button>
 
-              {/* ✅ SOFT TONE FREE MESSAGE CARD 2 (UPDATED) */}
               <p className="mt-3 text-green-400 text-sm font-semibold">
                 ✅ Free to Participate
               </p>
@@ -604,20 +626,12 @@ export default function HomeClient() {
           <h2 className="text-4xl md:text-6xl font-extrabold mt-3">
             Strict. Fair. Fully Verified.
           </h2>
-          <div className="grid md:grid-cols-3 gap-8 mt-14">
-            <div className={`rounded-3xl p-8 border ${theme.border}`}>
-              <h3 className="text-xl font-bold">Strict Verification</h3>
-              <p className={`mt-2 text-sm ${theme.textSub}`}>Every winner is verified. No shortcuts. No cheating.</p>
-            </div>
-            <div className={`rounded-3xl p-8 border border-orange-500`}>
-              <h3 className="text-xl font-bold">India Only</h3>
-              <p className={`mt-2 text-sm ${theme.textSub}`}>Rewards shipped only within India. Valid winners only.</p>
-            </div>
-            <div className={`rounded-3xl p-8 border border-yellow-500`}>
-              <h3 className="text-xl font-bold">Fair Shipping</h3>
-              <p className={`mt-2 text-sm ${theme.textSub}`}>Same reward process for Free & Paid users.</p>
-            </div>
-          </div>
+          
+          <p className={`mt-4 max-w-3xl mx-auto ${theme.textSub}`}>
+            Proof-based verification • Transparent rules • Fair judging
+            <br />Free India shipping • Strict but fair decisions
+          </p>
+
         </div>
       </section>
 
@@ -686,7 +700,6 @@ export default function HomeClient() {
                 <div className="inline-block mt-2 bg-gray-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">Badge: Beginner Access</div>
                 
                 <h4 className="text-5xl font-extrabold mt-4">₹0</h4>
-                {/* ✅ 1️⃣ FREE → Add Same Style Emojis & Power Feel */}
                 <ul className={`text-sm mt-6 space-y-3 ${theme.textSub}`}>
                   <li>✅ Dashboard Access</li>
                   <li>✅ Basic Tracking</li>
@@ -726,7 +739,6 @@ export default function HomeClient() {
 
                 <p className="text-sm line-through text-blue-300/60 mt-3">₹{proPrices[proPlan].original}</p>
                 <h4 className="text-5xl font-extrabold">₹{proPrices[proPlan].current}</h4>
-                {/* ✅ 2️⃣ PRO → Upgrade Feel & Icons Like Higher Plans */}
                 <ul className={`text-sm mt-6 space-y-3 ${theme.textSub}`}>
                   <li>✅ Everything in FREE</li>
                   <li>💪 Premium Workout Programs</li>
@@ -793,7 +805,6 @@ export default function HomeClient() {
             >
               <div>
                 <p className="text-yellow-500 font-semibold">ELITE</p>
-                {/* 👑 3️⃣ ELITE Badge → Shorter but STILL Royal */}
                 <div className="inline-block mt-2 bg-yellow-500 text-black px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
                   Badge: ELITE CIRCLE
                 </div>
@@ -937,6 +948,102 @@ export default function HomeClient() {
         </div>
       </section>
 
+      {/* 🔥 8️⃣ LEADERSHIP BLOCK — New Section */}
+      <section className={`py-24 px-6 border-t ${theme.border} reveal`}>
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-4xl font-extrabold">
+            2026 Is Your Reset.
+          </h2>
+
+          <p className={`mt-6 text-lg ${theme.textSub}`}>
+            Not a resolution. A commitment.
+            No loud promises. Just disciplined progress.
+            We’ll build it with you — day after day.
+          </p>
+        </div>
+      </section>
+
+      {/* 🧬 9️⃣ BRAND PHILOSOPHY — New Section */}
+      <section className={`py-20 px-6 border-t ${theme.border} reveal`}>
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-extrabold">FYT LYF Philosophy</h2>
+
+          <div className="grid md:grid-cols-4 gap-6 mt-10 text-lg font-semibold">
+            <div>Discipline &gt; Motivation</div>
+            <div>Proof &gt; Talk</div>
+            <div>Consistency &gt; Intensity</div>
+            <div>Effort Deserves Respect</div>
+          </div>
+        </div>
+      </section>
+
+      {/* 👥 TEAM FYT LYF — New Section (Replaces About) */}
+      <section id="about" className={`py-20 px-6 border-t ${theme.border} reveal`}>
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-3xl font-extrabold">Built by Team FYT LYF</h2>
+          <p className={`mt-6 text-lg ${theme.textSub}`}>
+            A team obsessed with discipline, structured growth,
+            and building India’s most trusted fitness ecosystem.
+          </p>
+        </div>
+      </section>
+
+      {/* 📱 4️⃣ APP PREVIEW — Updated Section */}
+      <section className={`py-24 px-6 border-t ${theme.border} reveal`}>
+        <div className="max-w-7xl mx-auto text-center">
+          <p className="text-orange-500 tracking-[6px] text-sm uppercase">
+            THE APP
+          </p>
+
+          <div className="inline-block mt-3 bg-orange-600 text-black px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
+            Coming This Week
+          </div>
+
+          <h2 className="text-4xl font-extrabold mt-3">
+            Inside the FYT LYF App
+          </h2>
+
+          <p className={`mt-4 max-w-3xl mx-auto ${theme.textSub}`}>
+            Built for discipline, clarity, and results.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-8 mt-16">
+            <div className={`rounded-3xl p-8 ${theme.cardBg}`}>
+              <h3 className="text-xl font-bold">Daily Discipline Dashboard</h3>
+              <p className={`${theme.textSub} mt-2 text-sm`}>
+                Streaks • Progress % • Verification Passed
+              </p>
+            </div>
+
+            <div className={`rounded-3xl p-8 border border-orange-500`}>
+              <h3 className="text-xl font-bold">Challenge Progress</h3>
+              <p className={`${theme.textSub} mt-2 text-sm`}>
+                Visual progress & proof history
+              </p>
+            </div>
+
+            <div className={`rounded-3xl p-8 border border-yellow-500`}>
+              <h3 className="text-xl font-bold">Performance Analytics</h3>
+              <p className={`${theme.textSub} mt-2 text-sm`}>
+                Smart insights & growth tracking
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 🌎 SOCIAL PROOF — New Section */}
+      <section className={`py-16 px-6 reveal`}>
+        <div className="max-w-5xl mx-auto text-center">
+          <p className="text-lg font-semibold">
+            People are already preparing for 2026.
+          </p>
+          <p className={`${theme.textSub} mt-2`}>
+            Early members are getting ready to start strong.
+          </p>
+        </div>
+      </section>
+
       {/* ================= REGISTER ================= */}
       <section id="register" className={`py-28 px-6 border-t ${theme.border} reveal`}>
         <div className="max-w-5xl mx-auto text-center">
@@ -1063,7 +1170,7 @@ export default function HomeClient() {
               
               <div>
                 <label className="sr-only" htmlFor="phone">Indian Mobile Number</label>
-                <input id="phone" name="phone" required placeholder="Indian Mobile Number" className={`w-full rounded-xl px-5 py-4 outline-none transition ${theme.inputBg}`} />
+                <input id="phone" name="phone" required type="tel" inputMode="numeric" placeholder="Indian Mobile Number" className={`w-full rounded-xl px-5 py-4 outline-none transition ${theme.inputBg}`} />
               </div>
 
               {/* ⭐ STEP 5 — ADD PLAN DROPDOWN IN FORM (FIXED ACCESSIBILITY) */}
@@ -1110,66 +1217,6 @@ export default function HomeClient() {
                 founder@fytlyf.in
               </a>
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ================= ABOUT ================= */}
-      <section id="about" className={`py-28 px-6 border-t ${theme.border} reveal`}>
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
-          <div>
-            <p className="text-orange-500 tracking-[6px] text-sm">THE MOVEMENT</p>
-            <h2 className="text-4xl md:text-6xl font-extrabold mt-3">Not Just Fitness. <span className="text-orange-500 block">A Discipline Revolution.</span></h2>
-            <p className={`mt-6 text-lg ${theme.textSub}`}>FYT LYF was built for the people who refuse to be average. The ones who wake up earlier. Train harder. Push beyond excuses.</p>
-          </div>
-          <div className="relative">
-             <div className={`rounded-3xl p-8 h-[380px] flex items-center justify-center ${theme.cardBg}`}>
-                <h3 className="text-3xl font-extrabold text-center">Built For The <span className="text-orange-500 block mt-2">Unstoppable.</span></h3>
-             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================= REWARDS & APP & FOOTER ================= */}
-      
-      {/* 👑 6️⃣ “Legend Status Recognition” Section */}
-      <section className={`py-24 px-6 border-t ${theme.border} reveal`}>
-        <div className="max-w-6xl mx-auto text-center">
-
-          <h2 className="text-4xl md:text-6xl font-extrabold leading-tight">
-            Legends Will Be Remembered.
-            <span className="text-orange-500 block">
-              Not Just Rewarded.
-            </span>
-          </h2>
-
-          <p className={`mt-5 max-w-3xl mx-auto ${theme.textSub} text-lg`}>
-            People who complete FYT LYF challenges don’t just get medals.
-            They get respect. Identity. A different aura.
-          </p>
-
-        </div>
-      </section>
-      
-      <section className={`py-24 px-6 border-t ${theme.border}`}>
-         <div className="max-w-7xl mx-auto text-center">
-            <h2 className="text-4xl font-extrabold">Earn Respect. <span className="text-orange-500">Win Glory.</span></h2>
-            <div className="grid md:grid-cols-3 gap-8 mt-16">
-               <div className={`rounded-3xl p-8 border ${theme.border} ${theme.cardHover}`}><h3 className="text-2xl font-bold">Digital Rewards</h3><p className={`mt-2 text-sm ${theme.textSub}`}>Official Certificates & Badges</p></div>
-               <div className={`rounded-3xl p-8 border border-orange-500 ${theme.cardHover}`}><h3 className="text-2xl font-bold">Physical Rewards</h3><p className={`mt-2 text-sm ${theme.textSub}`}>Medals, T-Shirts & Gear</p></div>
-               <div className={`rounded-3xl p-8 border border-yellow-500 ${theme.cardHover}`}><h3 className="text-2xl font-bold">Performance Loot</h3><p className={`mt-2 text-sm ${theme.textSub}`}>Supplements & Goodies</p></div>
-            </div>
-         </div>
-      </section>
-
-      <section className={`py-24 px-6 border-t ${theme.border}`}>
-        <div className="max-w-7xl mx-auto text-center">
-          <p className="text-orange-500 tracking-[6px] text-sm">THE APP</p>
-          <h2 className="text-4xl font-extrabold mt-3">Your Discipline Engine.</h2>
-          <div className="grid md:grid-cols-3 gap-8 mt-16">
-            <div className={`rounded-3xl p-8 ${theme.cardBg}`}><h3 className="text-xl font-bold">Smart Dashboard</h3></div>
-            <div className={`rounded-3xl p-8 border border-orange-500`}><h3 className="text-xl font-bold">AI Powered</h3></div>
-            <div className={`rounded-3xl p-8 border border-yellow-500`}><h3 className="text-xl font-bold">Community</h3></div>
           </div>
         </div>
       </section>
@@ -1278,7 +1325,7 @@ export default function HomeClient() {
               </li>
               <li>
                 <a 
-                  href="https://www.youtube.com/channel/UCd_o-TS6GQk5KvFd8YCltMA" 
+                  href="0" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-orange-500 transition"
