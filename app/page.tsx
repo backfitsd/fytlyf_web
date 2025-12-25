@@ -230,6 +230,7 @@ export default function HomeClient() {
             <button onClick={() => scrollTo("register")} className={`hover:${theme.text} transition`}>Register</button>
             <button onClick={() => scrollTo("about")} className={`hover:${theme.text} transition`}>About</button>
             <button onClick={() => scrollTo("creators")} className={`hover:${theme.text} transition`}>Creators</button>
+            <a href="/contact" className={`hover:${theme.text} transition`}>Contact</a> {/* ✅ LINK ADDED */}
           </nav>
 
           <div className="flex items-center gap-4">
@@ -257,6 +258,7 @@ export default function HomeClient() {
             <button onClick={() => scrollTo("pricing")} className="block w-full py-2">Membership</button>
             <button onClick={() => scrollTo("register")} className="block w-full py-2">Register</button>
             <button onClick={() => scrollTo("creators")} className="block w-full py-2">Creators</button>
+            <a href="/contact" className="block w-full py-2">Contact Us</a> {/* ✅ LINK ADDED */}
           </div>
         )}
       </header>
@@ -1306,6 +1308,7 @@ export default function HomeClient() {
             <ul className={`text-sm mt-4 space-y-2 ${theme.textSub}`}>
               <li><a href="/terms" className="hover:text-orange-500">Terms & Disclaimer</a></li>
               <li><a href="/privacy" className="hover:text-orange-500">Privacy Policy</a></li>
+              <li><a href="/refunds" className="hover:text-orange-500">Cancellation / Refund</a></li> {/* ✅ LINK ADDED */}
             </ul>
           </div>
 
